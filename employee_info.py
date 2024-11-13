@@ -1,4 +1,4 @@
-# Define a dictionary to store employee information
+# Define a list of 6 dictionaries to store 6 employees' information
 employee_data = [
     {"name": "John", "age": 30, "department": "Sales", "salary": 50000},
     {"name": "Jane", "age": 25, "department": "Marketing", "salary": 60000},
@@ -8,12 +8,22 @@ employee_data = [
     {"name": "Peter", "age": 40, "department": "Sales", "salary": 60000}
 ]
 
+
+
+
+def sort_employee_data(sortkey):
+    templist = employee_data.copy()
+    templist.sort(key=lambda x: x[sortkey])
+    #result = sorted(templist, key=lambda x: x[sortkey])
+    return templist
+
+
 def get_employees_by_age_range(age_lower_limit, age_upper_limit):
     result = []
 
     # check for age limits and append the item to result
     for item in employee_data:
-        if int(item["age"]) > int(age_lower_limit) and int(item["age"]) < int(age_upper_limit):
+        if int(item["age"]) > int(age_lower_limit) and int(item["age"]) < int(age_upper_limit): #force "int" cuz it's in integer value
             result.append(item)
 
     return result
@@ -23,15 +33,21 @@ def calculate_average_salary():
     average = 0
 
     #add your implementation to calculate here
+    for everyDictionary in employee_data:
+        employeeSalary = everyDictionary["salary"]
+        total += employeeSalary
 
+    average = total / len(employee_data)
+    average = round(average, 2)
+    return average  
 
-    return average
+def get_employees_by_dept(targetDept):
+    result = [] #empty list to be filled in with selected dictionaries
 
-def get_employees_by_dept(department):
-    result = []
-
-    # Add your implementation from here
-
+    # Add your implementation from here 5(d)
+    for everyDictionary in employee_data:
+        if everyDictionary["department"] == targetDept:
+            result.append(everyDictionary)   #add anything to the list, use append 
 
     return result
 
@@ -56,6 +72,7 @@ def display_main_menu():
     print("2 - Display average salary")
     print("3 - Display employee within age range")
     print("4 - Display employee in a department")
+    print("5 - Display all records according to sortkey")
 
 
     print("Q - Quit")
@@ -80,6 +97,12 @@ def display_main_menu():
         department = input("Name of Department = ")
         employee_info = get_employees_by_dept(department)
         display_records(employee_info)
+
+    elif option == '5':
+        #ask for the key to be used to sorting
+        sortkey = input("Enter key for sorting = ")
+        newlist = sort_employee_data(sortkey)
+        display_records(newlist)
 
     elif option == 'Q':
         quit()

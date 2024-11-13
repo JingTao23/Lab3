@@ -69,20 +69,17 @@ def main():
     result = bubble_sort(empty_arr, SORT_DESCENDING)
     print(result)
 
-    #Testing of zero array
+    #Testing of long array
     print("Sorted a too-long list: ")
     long_arr = [64, 34, 25, 12, 22, 11, 90]
     result = bubble_sort(empty_arr, SORT_DESCENDING)
     print(result)
 
     #Testing of zero array
-    print("Sorted a too-long list: ")
+    print("Sorted a non-integer list: ")
     non_int_arr = [64, 34, 25, 12, 22, 11, 90]
     result = bubble_sort(empty_arr, SORT_DESCENDING)
     print(result)
-
-
-    
 
 
 if __name__ == "__main__":
